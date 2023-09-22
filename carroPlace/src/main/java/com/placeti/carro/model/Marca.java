@@ -15,7 +15,34 @@ public class Marca {
 	private Long id;
 	@Column(nullable = false) //não tem necessidade de colocar
 	private String nome;
+	private String codigo_denatran;
+	private String Ativo;
 	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getCodigo_denatran() {
+		return codigo_denatran;
+	}
+	public void setCodigo_denatran(String codigo_denatran) {
+		this.codigo_denatran = codigo_denatran;
+	}
+	public String getAtivo() {
+		return Ativo;
+	}
+	public void setAtivo(String ativo) {
+		Ativo = ativo;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -31,17 +58,5 @@ public class Marca {
 		Marca other = (Marca) obj;
 		return Objects.equals(id, other.id);
 	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
+
 }
