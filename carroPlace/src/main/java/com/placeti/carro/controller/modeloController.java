@@ -17,44 +17,44 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.placeti.carro.model.Marca;
-import com.placeti.carro.repository.MarcaRepositoty;
+import com.placeti.carro.model.Modelo;
+import com.placeti.carro.repository.ModeloRepository;
 
-@RestController //vai receber requisições rest
-@RequestMapping("/marca") //vai mapear os endpoints para receber as requisições com /marca
-public class clienteController {
+@RestController
+@RequestMapping("/modelo")
+public class modeloController {
 	@Autowired
-	private MarcaRepositoty marcaRepositoty;
-	@GetMapping // ele vai chamar o metodo de baixo
-	public List<Marca> listar() {
-		return marcaRepositoty.findAll();
+	private ModeloRepository modeloRepository;
+	@GetMapping
+	public List<Modelo> listar() {
+		return modeloRepository.findAll();
 			}
-	//esse aqui é mais interessante
+	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Optional<Marca>> buscaMarcaID(@PathVariable(name = "id", required = true )Long id) {
-		return ResponseEntity.ok(marcaRepositoty.findById(id));
+	public ResponseEntity<Optional<Modelo>> buscaModeloID(@PathVariable(name = "id", required = true )Long id) {
+		return ResponseEntity.ok(modeloRepository.findById(id));
 	}
-	//ate aq------/
+	
 	@PostMapping
 	@ResponseStatus (HttpStatus.CREATED)
-	public Marca adicionar(@RequestBody Marca marca) {
-		return marcaRepositoty.save(marca);
+	public Modelo adicionar(@RequestBody Modelo modelo) {
+		return modeloRepository.save(modelo);
 		
 	}
 	@DeleteMapping(path = "/{id}")
-	public void deleteMarca(
+	public void deleteModelo(
 			@PathVariable(name = "id", required = true)Long id) {
-			marcaRepositoty.deleteById(id);
+			modeloRepository.deleteById(id);
 	}
 	 @RequestMapping(value = "/{id}", method =  RequestMethod.PUT)
-	    public ResponseEntity<Marca> Put(@PathVariable(value = "id") long id, @RequestBody Marca novamarca)
+	    public ResponseEntity<Modelo> Put(@PathVariable(value = "id") long id, @RequestBody Modelo novomodelo)
 	    {
-	        Optional<Marca> antmarca = marcaRepositoty.findById(id);
-	        if(antmarca.isPresent()){
-	            Marca marca = antmarca.get();
-	            marca.setNome(novamarca.getNome());
-	            marcaRepositoty.save(marca);
-	            return new ResponseEntity<Marca>(marca, HttpStatus.OK);
+	        Optional<Modelo> antmodelo = modeloRepository.findById(id);
+	        if(antmodelo.isPresent()){
+	            Modelo modelo = antmodelo.get();
+	            modelo.setNome(novomodelo.getNome());
+	            modeloRepository.save(modelo);
+	            return new ResponseEntity<Modelo>(modelo, HttpStatus.OK);
 	        }
 	        else
 	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);

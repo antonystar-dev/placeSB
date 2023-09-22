@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.placeti.carro.model.Marca;
 @Repository
 
-public interface MarcaRepositoty extends JpaRepository<Marca, Long>{
+public interface MarcaRepository extends JpaRepository<Marca, Long>{
 
 }
