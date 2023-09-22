@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,6 +46,21 @@ public class clienteController {
 			@PathVariable(name = "id", required = true)Long id) {
 			marcaRepositoty.deleteById(id);
 	}
+	 @RequestMapping(value = "/{id}", method =  RequestMethod.PUT)
+	    public ResponseEntity<Marca> Put(@PathVariable(value = "id") long id, @RequestBody Marca novamarca)
+	    {
+	        Optional<Marca> antmarca = marcaRepositoty.findById(id);
+	        if(antmarca.isPresent()){
+	            Marca marca = antmarca.get();
+	            marca.setNome(novamarca.getNome());
+	            marcaRepositoty.save(marca);
+	            return new ResponseEntity<Marca>(marca, HttpStatus.OK);
+	        }
+	        else
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	
+
 	
 	
 	}
