@@ -1,12 +1,16 @@
 package com.placeti.carro.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Marca {
@@ -17,6 +21,9 @@ public class Marca {
 	private String nome;
 	private String codigo_denatran;
 	private String Ativo;
+	@OneToMany(mappedBy = "marca", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Modelo> modelos = new ArrayList<>();
+	
 	
 	
 	public Long getId() {
@@ -42,6 +49,12 @@ public class Marca {
 	}
 	public void setAtivo(String ativo) {
 		Ativo = ativo;
+	}
+	public List<Modelo> getModelos() {
+		return modelos;
+	}
+	public void setModelos(List<Modelo> modelos) {
+		this.modelos = modelos;
 	}
 	@Override
 	public int hashCode() {

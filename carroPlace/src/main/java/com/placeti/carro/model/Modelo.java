@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Modelo {
@@ -17,7 +19,10 @@ public class Modelo {
 	private String nome;
 	private String ano;
 	private String ativo;
-	private String Marca;
+	//private String Marca;
+	@ManyToOne
+    @JoinColumn(name = "marca_id")
+    private Marca marca;
 	
 	
 	public Long getId() {
@@ -44,11 +49,11 @@ public class Modelo {
 	public void setAtivo(String ativo) {
 		this.ativo = ativo;
 	}
-	public String getMarca() {
-		return Marca;
+	public Marca getMarca() {
+		return marca;
 	}
-	public void setMarca(String marca) {
-		Marca = marca;
+	public void setMarca(Marca marca) {
+		this.marca = marca;
 	}
 	@Override
 	public int hashCode() {
