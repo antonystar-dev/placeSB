@@ -58,7 +58,8 @@ JSON para Listar Marca:
 
 Não se aplica, mas consultar da seguinte forma:
 
-Listar todas as marcas= http://localhost:8080/marca 
+Listar todas as marcas= http://localhost:8080/marca
+
 Listar marcas separadas= http://localhost:8080/marca/id
 
 JSON para Alterar Marca:
@@ -98,7 +99,8 @@ JSON para Listar Modelo:
 
 Não se aplica, mas consultar da seguinte forma:
 
-Listar todos os modelos= http://localhost:8080/modelo 
+Listar todos os modelos= http://localhost:8080/modelo
+
 Listar modelo separado= http://localhost:8080/modelo/id
 
 JSON para Alterar Modelo:
